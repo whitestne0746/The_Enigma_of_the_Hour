@@ -27,24 +27,6 @@ export default class Building extends THREE.Object3D {
     this.add(edges)
   }
 
-  /*
-  createBuilding() {
-    const building = new THREE.Group()
-    const pillar = this.createPillar()
-    const wall = this.createUpWall()
-    const backWall = this.createBackWall()
-    backWall.position.z = -70
-    const stairs = this.createStairs()
-    stairs.position.y = -10
-    building.position.y = 10
-    building.add(pillar)
-    building.add(wall)
-    building.add(backWall)
-    building.add(stairs)
-    return building
-  }
-  */
-
   createPillar() {
     const pillars = new THREE.Group()
     const pillarGeo = new THREE.BoxGeometry(this.pillarWidth, this.pillarHeight, this.wallDepth)
