@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "angular": false,
+    "moment": false,
+    "_": false,
+    "$": true
+  },
+  "extends": "google",
+  "rules": {
+    "require-jsdoc": "off",
+    "valid-jsdoc": "off",
+    "max-len": "off",
+    "no-var": "off",
+    "no-invalid-this": "off",
+    "object-curly-spacing": [
+      2,
+      "always"
+    ],
+    "no-unused-vars": 0,
+    "one-var": [
+      0,
+      "always"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "indent": 0
+  }
+}
