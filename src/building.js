@@ -19,12 +19,15 @@ export default class Building extends THREE.Object3D {
     const edges = this.createStairs()[1]
     stairs.position.y = -10
     edges.position.y = -10
+    const watch = this.createWatch()
+    // watch.position.z = 50
     this.position.y = 10
     this.add(pillar)
     this.add(wall)
     this.add(backWall)
     this.add(stairs)
     this.add(edges)
+    this.add(watch)
   }
 
   createPillar() {
@@ -231,6 +234,7 @@ export default class Building extends THREE.Object3D {
     let height = 0
     let stair
     let line
+    const geometry = new THREE.Geometry()
     for (let i = 0; i < 7; i++) {
       height = height + 10 / 7
       if (i !== 6) {
@@ -239,11 +243,6 @@ export default class Building extends THREE.Object3D {
           new THREE.MeshPhongMaterial({ color: '#deb887' })
         )
         stair.position.z = 23.5 - 20 / 7 * (i + 1)
-        line = new THREE.Line(
-          new THREE.BoxGeometry(360, height, 20 / 7),
-          new THREE.LineBasicMaterial({ color: '#696969' })
-        )
-        line.position.z = 23.5 - 20 / 7 * (i + 1)
       } else {
         stair = new THREE.Mesh(
           new THREE.BoxGeometry(360, height, 70),
@@ -251,15 +250,49 @@ export default class Building extends THREE.Object3D {
         )
         stair.position.z = -30
       }
+
       stair.position.x = 175
       stair.position.y = height / 2
-      line.position.x = 175
-      line.position.y = height / 2
+
+      geometry.vertices.push(new THREE.Vector3(-5, 0, 0))
+      geometry.vertices.push(new THREE.Vector3(355, 0, 0))
+
+      line = new THREE.Line(
+        geometry,
+        new THREE.LineBasicMaterial({ color: '#696969' })
+      )
+      line.position.y = height
+      line.position.z = 23.5 - 20 / 7 * (i + 1) + 10 / 7
+
       stairs.add(stair)
       edges.add(line)
     }
     obj.push(stairs)
     obj.push(edges)
     return obj
+  }
+
+  createWatch() {
+    const watch = new THREE.Group()
+    const hands = new THREE.Group()
+    const disk = new THREE.Mesh(
+      new THREE.CylinderGeometry(10, 10, 5, 36, 1, false),
+      new THREE.MeshBasicMaterial({ color: '#ffffff' })
+    )
+    const hourHand = new THREE.Mesh(
+      new THREE.BoxGeometry(2, 3, 1),
+      new THREE.MeshBasicMaterial({ color: '#00ff00' })
+    )
+    hourHand.rotation.x = -Math.PI / 2
+    hourHand.rotation.y = Math.PI / 4
+    hourHand.position.x = 1
+    hourHand.position.y = 20
+    watch.add(disk)
+    watch.add(hourHand)
+    watch.rotation.x = -Math.PI / 2
+    watch.position.x = 175
+    watch.position.y = 120
+    watch.position.z = 5
+    return watch
   }
 }
