@@ -20,7 +20,7 @@ export default class Building extends THREE.Object3D {
     stairs.position.y = -10
     edges.position.y = -10
     const watch = this.createWatch()
-    // watch.position.z = 50
+    // watch.position.z = 60
     this.position.y = 10
     this.add(pillar)
     this.add(wall)
@@ -280,15 +280,34 @@ export default class Building extends THREE.Object3D {
       new THREE.MeshBasicMaterial({ color: '#ffffff' })
     )
     const hourHand = new THREE.Mesh(
-      new THREE.BoxGeometry(2, 3, 1),
-      new THREE.MeshBasicMaterial({ color: '#00ff00' })
+      new THREE.BoxGeometry(1, 6, 1),
+      new THREE.MeshBasicMaterial({ color: '#000000' })
     )
     hourHand.rotation.x = -Math.PI / 2
-    hourHand.rotation.y = Math.PI / 4
-    hourHand.position.x = 1
-    hourHand.position.y = 20
+    hourHand.rotation.z = Math.PI / 2.2
+    hourHand.position.x = 3
+    hourHand.position.y = -3
+
+    const minuteHand = new THREE.Mesh(
+      new THREE.BoxGeometry(1, 8, 1),
+      new THREE.MeshBasicMaterial({ color: '#000000' })
+    )
+    minuteHand.rotation.x = -Math.PI / 2
+    minuteHand.rotation.z = -Math.PI / 5
+    minuteHand.position.x = -3.5
+    minuteHand.position.y = -3
+    minuteHand.position.z = 4
+
+    const center = new THREE.Mesh(
+      new THREE.CylinderGeometry(1.5, 1.5, 1, 36, 1, false),
+      new THREE.MeshBasicMaterial({ color: '#000000' })
+    )
+    // center.rotation.x = -Math.PI / 2
+    center.position.y = -3
     watch.add(disk)
     watch.add(hourHand)
+    watch.add(minuteHand)
+    watch.add(center)
     watch.rotation.x = -Math.PI / 2
     watch.position.x = 175
     watch.position.y = 120
