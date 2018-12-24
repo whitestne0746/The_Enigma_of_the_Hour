@@ -27,21 +27,21 @@ function init() {
 
   const scene = new THREE.Scene();
 
-  const light = new THREE.DirectionalLight("#ffffff");
+  const light = new THREE.DirectionalLight("#fffff0");
   light.castShadow = true;
-  light.shadow.mapSize.width = 16384;
-  light.shadow.mapSize.height = 16384;
+  light.shadow.mapSize.width = 8192;
+  light.shadow.mapSize.height = 8192;
   light.intensity = 2;
-  light.position.set(-100, 100, -100);
-  light.shadow.camera.left = -1000;
-  light.shadow.camera.right = 1000;
-  light.shadow.camera.top = -1000;
-  light.shadow.camera.bottom = 1000;
-  light.shadow.camera.far = 4000;
+  light.position.set(-130, 100, -100);
+  light.shadow.camera.left = -2000;
+  light.shadow.camera.right = 2000;
+  light.shadow.camera.top = -2000;
+  light.shadow.camera.bottom = 2000;
+  light.shadow.camera.far = 2000;
   scene.add(light);
 
-  // const amb = new THREE.AmbientLight('#ffffff')
-  // scene.add(amb)
+  const amb = new THREE.AmbientLight('#464640', 1.0)
+  scene.add(amb)
 
   const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(100000, 100000),
@@ -57,6 +57,14 @@ function init() {
   building.position.x = -175;
   // building.position.y = 5;
   scene.add(building);
+
+  const loader = new THREE.ObjectLoader();
+  loader.load("../model/standard-male-figure.json", obj => {
+    const model = obj;
+    model.scale.set(1.5, 1.5, 1.5);
+    model.position.set(50, 10, 0);
+    scene.add(model);
+  });
 
   animation();
 
